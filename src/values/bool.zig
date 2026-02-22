@@ -1,0 +1,33 @@
+const std = @import("std");
+
+pub const ValueBool = struct {
+    value: ?bool,
+
+    pub fn initEmpty() ValueBool {
+        return ValueBool{ .value = null };
+    }
+
+    pub fn initWith(value: bool) ValueBool {
+        return ValueBool{ .value = value };
+    }
+
+    pub fn show(self: *const ValueBool, end: u8) void {
+        if (self.value) |val| {
+            std.debug.print("bool<{}>{c}", .{ val, end });
+        } else {
+            std.debug.print("bool<null>{c}", .{end});
+        }
+    }
+
+    pub fn isNull(self: *const ValueBool) bool {
+        return self.value == null;
+    }
+
+    pub fn getTypeRepresentation(_: *const ValueBool) []const u8 {
+        return "bool";
+    }
+
+    pub fn getValue(self: *const ValueBool) ?bool {
+        return self.value;
+    }
+};

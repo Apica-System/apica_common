@@ -4,7 +4,7 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    const lib_module = b.createModule(.{
+    const lib_module = b.addModule("apica_common", .{
         .root_source_file = b.path("src/root.zig"),
         .target = target,
         .optimize = optimize,
@@ -14,7 +14,7 @@ pub fn build(b: *std.Build) void {
         .name = "apica_common",
         .root_module = lib_module,
         .linkage = .static,
-        .version = .{ .major = 0, .minor = 1, .patch = 0 },
+        .version = .{ .major = 0, .minor = 1, .patch = 1 },
     });
 
     b.installArtifact(lib);

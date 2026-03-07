@@ -11,11 +11,11 @@ pub const ValueBool = struct {
         return ValueBool{ .value = value };
     }
 
-    pub fn show(self: *const ValueBool, end: u8) void {
+    pub fn show(self: *const ValueBool, writer: *std.io.Writer, end: u8) !void {
         if (self.value) |val| {
-            std.debug.print("bool<{}>{c}", .{ val, end });
+            try writer.print("bool<{}>{c}", .{ val, end });
         } else {
-            std.debug.print("bool<null>{c}", .{end});
+            try writer.print("bool<null>{c}", .{end});
         }
     }
 

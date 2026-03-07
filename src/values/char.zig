@@ -11,17 +11,17 @@ pub const ValueChar = struct {
         return ValueChar{ .value = value };
     }
 
-    pub fn show(self: *const ValueChar, end: u8) void {
+    pub fn show(self: *const ValueChar, writer: *std.io.Writer, end: u8) !void {
         if (self.value) |val| {
             var buffer: [4]u8 = .{ 0, 0, 0, 0 };
             _ = std.unicode.utf8Encode(@intCast(val), &buffer) catch {
-                std.debug.print("char<>{c}", .{end});
+                try writer.print("char<>{c}", .{end});
                 return;
             };
 
-            std.debug.print("char<{s}>{c}", .{ buffer, end });
+            try writer.print("char<{s}>{c}", .{ buffer, end });
         } else {
-            std.debug.print("char<null>{c}", .{end});
+            try writer.print("char<null>{c}", .{end});
         }
     }
 

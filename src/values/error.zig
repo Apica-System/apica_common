@@ -16,15 +16,15 @@ pub const ValueError = struct {
         return ValueError{ .name = name, .details = details };
     }
 
-    pub fn show(self: *const ValueError, end: u8) void {
+    pub fn show(self: *const ValueError, writer: *std.io.Writer, end: u8) !void {
         if (self.name) |name| {
             if (self.details) |details| {
-                std.debug.print("error<{s}: {s}>{c}", .{ name, details, end });
+                try writer.print("error<{s}: {s}>{c}", .{ name, details, end });
             } else {
-                std.debug.print("error<{s}>{c}", .{ name, end });
+                try writer.print("error<{s}>{c}", .{ name, end });
             }
         } else {
-            std.debug.print("error<null>{c}", .{end});
+            try writer.print("error<null>{c}", .{end});
         }
     }
 

@@ -1,3 +1,5 @@
+const std = @import("std");
+
 pub const ValueKind = @import("kind.zig").ValueKind;
 
 pub const ValueNull = @import("null.zig").ValueNull;
@@ -35,24 +37,24 @@ pub const Value = union(ValueKind) {
     Error: ValueError,
     Type: ValueType,
 
-    pub fn show(self: *const Value, end: u8) void {
+    pub fn show(self: *const Value, writer: *std.io.Writer, end: u8) !void {
         switch (self.*) {
-            .Null => |_null| _null.show(end),
-            .I8 => |_i8| _i8.show(end),
-            .I16 => |_i16| _i16.show(end),
-            .I32 => |_i32| _i32.show(end),
-            .I64 => |_i64| _i64.show(end),
-            .U8 => |_u8| _u8.show(end),
-            .U16 => |_u16| _u16.show(end),
-            .U32 => |_u32| _u32.show(end),
-            .U64 => |_u64| _u64.show(end),
-            .F32 => |_f32| _f32.show(end),
-            .F64 => |_f64| _f64.show(end),
-            .Bool => |_bool| _bool.show(end),
-            .Char => |char| char.show(end),
-            .String => |string| string.show(end),
-            .Error => |_error| _error.show(end),
-            .Type => |_type| _type.show(end),
+            .Null => |_null| try _null.show(writer, end),
+            .I8 => |_i8| try _i8.show(writer, end),
+            .I16 => |_i16| try _i16.show(writer, end),
+            .I32 => |_i32| try _i32.show(writer, end),
+            .I64 => |_i64| try _i64.show(writer, end),
+            .U8 => |_u8| try _u8.show(writer, end),
+            .U16 => |_u16| try _u16.show(writer, end),
+            .U32 => |_u32| try _u32.show(writer, end),
+            .U64 => |_u64| try _u64.show(writer, end),
+            .F32 => |_f32| try _f32.show(writer, end),
+            .F64 => |_f64| try _f64.show(writer, end),
+            .Bool => |_bool| try _bool.show(writer, end),
+            .Char => |char| try char.show(writer, end),
+            .String => |string| try string.show(writer, end),
+            .Error => |_error| try _error.show(writer, end),
+            .Type => |_type| try _type.show(writer, end),
         }
     }
 

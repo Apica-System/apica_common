@@ -12,8 +12,8 @@ pub const ValueType = struct {
         return ValueType{ .kind = kind };
     }
 
-    pub fn show(self: *const ValueType, end: u8) void {
-        std.debug.print("type<{s}>{c}", .{ self.kind.getRepresentation(), end });
+    pub fn show(self: *const ValueType, writer: *std.io.Writer, end: u8) !void {
+        try writer.print("type<{s}>{c}", .{ self.kind.getRepresentation(), end });
     }
 
     pub fn isNull(self: *const ValueType) bool {

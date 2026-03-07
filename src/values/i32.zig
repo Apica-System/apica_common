@@ -11,11 +11,11 @@ pub const ValueI32 = struct {
         return ValueI32{ .value = value };
     }
 
-    pub fn show(self: *const ValueI32, end: u8) void {
+    pub fn show(self: *const ValueI32, writer: *std.io.Writer, end: u8) !void {
         if (self.value) |val| {
-            std.debug.print("i32<{}>{c}", .{ val, end });
+            try writer.print("i32<{}>{c}", .{ val, end });
         } else {
-            std.debug.print("i32<null>{c}", .{end});
+            try writer.print("i32<null>{c}", .{end});
         }
     }
 

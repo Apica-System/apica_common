@@ -11,11 +11,11 @@ pub const ValueI64 = struct {
         return ValueI64{ .value = value };
     }
 
-    pub fn show(self: *const ValueI64, end: u8) void {
+    pub fn show(self: *const ValueI64, writer: *std.io.Writer, end: u8) !void {
         if (self.value) |val| {
-            std.debug.print("i64<{}>{c}", .{ val, end });
+            try writer.print("i64<{}>{c}", .{ val, end });
         } else {
-            std.debug.print("i64<null>{c}", .{end});
+            try writer.print("i64<null>{c}", .{end});
         }
     }
 

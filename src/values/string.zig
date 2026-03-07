@@ -11,11 +11,11 @@ pub const ValueString = struct {
         return ValueString{ .value = value };
     }
 
-    pub fn show(self: *const ValueString, end: u8) void {
+    pub fn show(self: *const ValueString, writer: *std.io.Writer, end: u8) !void {
         if (self.value) |val| {
-            std.debug.print("string<{s}>{c}", .{ val, end });
+            try writer.print("string<{s}>{c}", .{ val, end });
         } else {
-            std.debug.print("string<null>{c}", .{end});
+            try writer.print("string<null>{c}", .{end});
         }
     }
 

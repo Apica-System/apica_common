@@ -11,11 +11,11 @@ pub const ValueU8 = struct {
         return ValueU8{ .value = value };
     }
 
-    pub fn show(self: *const ValueU8, end: u8) void {
+    pub fn show(self: *const ValueU8, writer: *std.io.Writer, end: u8) !void {
         if (self.value) |val| {
-            std.debug.print("u8<{}>{c}", .{ val, end });
+            try writer.print("u8<{}>{c}", .{ val, end });
         } else {
-            std.debug.print("u8<null>{c}", .{end});
+            try writer.print("u8<null>{c}", .{end});
         }
     }
 

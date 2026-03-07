@@ -1,6 +1,6 @@
 .{
     .name = .apica_common,
-    .version = "0.1.1",
+    .version = "0.1.2",
     .fingerprint = 0xe3eecea9b1fed1e0,
     .minimum_zig_version = "0.15.2",
     .dependencies = .{},

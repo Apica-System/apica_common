@@ -1,4 +1,5 @@
 const std = @import("std");
+const ValueKind = @import("kind.zig").ValueKind;
 
 pub const ValueNull = struct {
     pub fn initEmpty() ValueNull {
@@ -15,5 +16,9 @@ pub const ValueNull = struct {
 
     pub fn getTypeRepresentation(_: *const ValueNull) []const u8 {
         return "null";
+    }
+
+    pub fn getKind(_: *const ValueNull) ValueKind {
+        return ValueKind.Null;
     }
 };

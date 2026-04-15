@@ -1,4 +1,5 @@
 const std = @import("std");
+const ValueKind = @import("kind.zig").ValueKind;
 
 pub const ValueF32 = struct {
     value: ?f32,
@@ -25,6 +26,10 @@ pub const ValueF32 = struct {
 
     pub fn getTypeRepresentation(_: *const ValueF32) []const u8 {
         return "f32";
+    }
+
+    pub fn getKind(_: *const ValueF32) ValueKind {
+        return ValueKind.F32;
     }
 
     pub fn getValue(self: *const ValueF32) ?f32 {

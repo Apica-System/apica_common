@@ -99,4 +99,25 @@ pub const Value = union(ValueKind) {
             .Type => |_type| return _type.getTypeRepresentation(),
         }
     }
+
+    pub fn getKind(self: *const Value) ValueKind {
+        switch (self.*) {
+            .Null => |_null| return _null.getKind(),
+            .I8 => |_i8| return _i8.getKind(),
+            .I16 => |_i16| return _i16.getKind(),
+            .I32 => |_i32| return _i32.getKind(),
+            .I64 => |_i64| return _i64.getKind(),
+            .U8 => |_u8| return _u8.getKind(),
+            .U16 => |_u16| return _u16.getKind(),
+            .U32 => |_u32| return _u32.getKind(),
+            .U64 => |_u64| return _u64.getKind(),
+            .F32 => |_f32| return _f32.getKind(),
+            .F64 => |_f64| return _f64.getKind(),
+            .Bool => |_bool| return _bool.getKind(),
+            .Char => |char| return char.getKind(),
+            .String => |string| return string.getKind(),
+            .Error => |_error| return _error.getKind(),
+            .Type => |_type| return _type.getKind(),
+        }
+    }
 };

@@ -24,7 +24,11 @@ pub const ValueType = struct {
         return "type";
     }
 
-    pub fn getKind(self: *const ValueType) ValueKind {
+    pub fn getKind(_: *const ValueType) ValueKind {
+        return ValueKind.Type;
+    }
+
+    pub fn getTypeKind(self: *const ValueType) ValueKind {
         return self.kind;
     }
 };

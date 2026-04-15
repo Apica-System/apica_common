@@ -1,4 +1,5 @@
 const std = @import("std");
+const ValueKind = @import("kind.zig").ValueKind;
 
 pub const ValueError = struct {
     name: ?[]const u8,
@@ -34,6 +35,10 @@ pub const ValueError = struct {
 
     pub fn getTypeRepresentation(_: *const ValueError) []const u8 {
         return "error";
+    }
+
+    pub fn getKind(_: *const ValueError) ValueKind {
+        return ValueKind.Error;
     }
 
     pub fn getName(self: *const ValueError) ?[]u8 {

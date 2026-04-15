@@ -14,7 +14,7 @@ pub fn build(b: *std.Build) void {
         .name = "apica_common",
         .root_module = lib_module,
         .linkage = .static,
-        .version = .{ .major = 0, .minor = 1, .patch = 1 },
+        .version = .{ .major = 0, .minor = 1, .patch = 3 },
     });
 
     b.installArtifact(lib);

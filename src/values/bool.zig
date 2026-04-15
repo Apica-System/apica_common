@@ -1,4 +1,5 @@
 const std = @import("std");
+const ValueKind = @import("kind.zig").ValueKind;
 
 pub const ValueBool = struct {
     value: ?bool,
@@ -25,6 +26,10 @@ pub const ValueBool = struct {
 
     pub fn getTypeRepresentation(_: *const ValueBool) []const u8 {
         return "bool";
+    }
+
+    pub fn getKind(_: *const ValueBool) ValueKind {
+        return ValueKind.Bool;
     }
 
     pub fn getValue(self: *const ValueBool) ?bool {
